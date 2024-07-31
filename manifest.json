@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "WebRTC Capture Extension",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+		"scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "js": ["content.js"],
+			"run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+	"web_accessible_resources": [
+   	{
+      "resources": ["injected-script.js"],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+  	}
+  ]
+}
+
